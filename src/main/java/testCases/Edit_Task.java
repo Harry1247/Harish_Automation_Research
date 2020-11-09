@@ -1,4 +1,4 @@
-package edit_task;
+package testCases;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -9,28 +9,15 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import projspecific.ProjectSpecific;
 
-public class Edit_Task {
+public class Edit_Task extends ProjectSpecific{
 
-	public static void main(String[] args) throws InterruptedException {
-	
-		// TODO Auto-generated method stub
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		WebDriverManager.chromedriver().setup();
-		
-		ChromeDriver driver = new ChromeDriver(options);
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-		
-		//System.out.println("Able to launch the app");
-		
-		driver.manage().window().maximize();
-		driver.findElementById("username").sendKeys("puppetter@testleaf.com");
-		driver.findElementById("password").sendKeys("Bootcamp$123");
-		driver.findElementById("Login").click();
+	@Test
+	public void editTask() throws InterruptedException {
 		
 		//Clicking n Togggle button:
 		

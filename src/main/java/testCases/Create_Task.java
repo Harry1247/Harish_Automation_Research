@@ -1,28 +1,25 @@
-package create_task;
-
-import java.util.concurrent.TimeUnit;
-
-
+package testCases;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import projspecific.ProjectSpecific;
 
 
 
 
 public class Create_Task extends ProjectSpecific {
+	
+	@BeforeTest
+	public void setData() {
+		excelfileName = "TC001_Create_Task";
+	}
 
 	
-	@Test
-	public void Login() throws InterruptedException {
+	@Test(dataProvider = "fdata")
+	public void Login(String search) throws InterruptedException {
 		
 		
 		
@@ -34,7 +31,7 @@ public class Create_Task extends ProjectSpecific {
 		WebElement plus = driver.findElementByXPath("//*[@class='slds-icon slds-icon_x-small']");
 				
 		
-		Thread.sleep(15000);
+		Thread.sleep(20000);
 		plus.click();
 		
 		System.out.println("Able to click SVG");
@@ -61,7 +58,7 @@ public class Create_Task extends ProjectSpecific {
 		driver.findElementByXPath("(//input[@title='Search Contacts'])").click();
 		 
 
-		driver.findElementByXPath("(//input[@title='Search Contacts'])").sendKeys("Sarath M");
+		driver.findElementByXPath("(//input[@title='Search Contacts'])").sendKeys(search);
 		
 		Thread.sleep(3000);
 		 
@@ -78,8 +75,8 @@ public class Create_Task extends ProjectSpecific {
 		driver.findElementByXPath("//span[text()='Status']/following::a[6]").click();
 		
 		//Clicking on save button:
-		
-		driver.findElementByXPath("(//*[@class='slds-button slds-button--brand cuf-publisherShareButton uiButton'])").click();
+		Thread.sleep(10000);
+		driver.findElementByXPath("(//span[text()='Save'])[2]").click();
 		
 		
 		
